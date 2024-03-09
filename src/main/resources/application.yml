@@ -1,0 +1,10 @@
+server:
+  port: 8082
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ms_order
+      username: msorder
+      password: 123456789
+  jpa:
+    open-in-view: false
