@@ -12,6 +12,8 @@ public class ProductDTO {
     @JsonProperty()
     public String name;
     @JsonProperty()
+    public String description;
+    @JsonProperty()
     public int quantity;
     @JsonProperty()
     public double price;

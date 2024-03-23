@@ -18,18 +18,20 @@ public class Orders {
     private String customerEmail;
     private String shippingAddress;
     private String paymentMethod;
+    private Double value;
     private String status;
 
     public Orders() {
     }
 
-    public Orders(String productId, int quantity, String customerName, String customerEmail, String shippingAddress, String paymentMethod, String status) {
+    public Orders(String productId, int quantity, String customerName, String customerEmail, String shippingAddress, String paymentMethod, Double value, String status) {
         this.productId = productId;
         this.quantity = quantity;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.shippingAddress = shippingAddress;
         this.paymentMethod = paymentMethod;
+        this.value = value;
         this.status = status;
     }
 
@@ -40,6 +42,7 @@ public class Orders {
         this.customerEmail = ordersDTO.customerEmail();
         this.shippingAddress = ordersDTO.shippingAddress();
         this.paymentMethod = ordersDTO.paymentMethod();
+        this.value = ordersDTO.valueMethod();
         this.status = ordersDTO.status();
     }
 }
