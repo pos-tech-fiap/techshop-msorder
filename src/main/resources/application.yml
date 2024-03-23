@@ -8,3 +8,7 @@ spring:
       password: 123456789
   jpa:
     open-in-view: false
+  security:
+    user:
+      name: user
+      password: 123
