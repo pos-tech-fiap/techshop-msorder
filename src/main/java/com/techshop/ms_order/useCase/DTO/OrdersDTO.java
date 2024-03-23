@@ -19,8 +19,10 @@ public record OrdersDTO(
         @NotBlank(message = "Shipping address field is required!")
         String shippingAddress,
         @JsonProperty("payment_method")
-        @NotBlank(message = "Payment method  field is required!")
+        @NotBlank(message = "Payment method field is required!")
         String paymentMethod,
+        @NotBlank(message = "Value field is required!")
+        Double value,
         @JsonProperty()
         String status
 
@@ -31,6 +33,7 @@ public record OrdersDTO(
     public String customerEmail() { return  customerEmail; };
     public String shippingAddress() { return shippingAddress;};
     public String paymentMethod() { return  paymentMethod; };
+    public Double valueMethod() { return  value; };
     public String status() { return  status; };
 
 }

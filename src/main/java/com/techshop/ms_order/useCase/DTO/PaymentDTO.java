@@ -7,12 +7,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PaymentDTO {
-    @JsonProperty("product_id")
-    public String productId;
     @JsonProperty()
-    public String name;
+    public String status;
     @JsonProperty()
-    public int quantity;
+    public String method;
+    @JsonProperty("user_id")
+    public Long userId;
     @JsonProperty()
-    public double valueTot;
+    public Double value;
+
 }

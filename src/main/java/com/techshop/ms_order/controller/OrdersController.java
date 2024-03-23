@@ -1,12 +1,14 @@
 package com.techshop.ms_order.controller;
 
 import com.techshop.ms_order.service.OrdersService;
+import com.techshop.ms_order.service.PaymentService;
+import com.techshop.ms_order.service.ProductService;
 import com.techshop.ms_order.useCase.DTO.OrdersDTO;
+import com.techshop.ms_order.useCase.DTO.PaymentDTO;
 import com.techshop.ms_order.useCase.entity.Orders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import reactor.core.publisher.Mono;
@@ -22,6 +24,7 @@ public class OrdersController {
 
     @PostMapping("/order")
     public Mono<ResponseEntity<Orders>> save(@RequestBody @Valid OrdersDTO ordersDTO) {
+
         return ordersService.save(ordersDTO)
                 .map(saveOrder -> ResponseEntity.status(HttpStatus.CREATED)
                         .body(saveOrder));
@@ -34,7 +37,6 @@ public class OrdersController {
     }
 
     @GetMapping("/")
-    @PreAuthorize("isAuthenticated()")
     public Mono<ResponseEntity<List<Orders>>> getAll() {
         return ordersService.findAll()
                 .collectList()

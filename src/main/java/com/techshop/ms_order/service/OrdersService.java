@@ -2,6 +2,7 @@ package com.techshop.ms_order.service;
 
 import com.techshop.ms_order.repository.OrdersRepository;
 import com.techshop.ms_order.useCase.DTO.OrdersDTO;
+import com.techshop.ms_order.useCase.DTO.PaymentDTO;
 import com.techshop.ms_order.useCase.entity.Orders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,22 @@ import reactor.core.publisher.Mono;
 public class OrdersService {
     @Autowired
     OrdersRepository ordersRepository;
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    PaymentService paymentService;
 
     public Mono<Orders> save(OrdersDTO ordersDTO) {
         var order = new Orders(ordersDTO);
-        return ordersRepository.save(order)
-                .onErrorMap(e -> new RuntimeException("Failed to save order", e));
+        PaymentDTO paymentDTO = new PaymentDTO();
+        paymentDTO.setUserId(123456L);
+        paymentDTO.setValue(order.getValue());
+        paymentDTO.setMethod(order.getPaymentMethod());
+
+        return productService.processPaymentAndDeductQuantity(order.getProductId(), order, paymentDTO)
+                .flatMap(product -> ordersRepository.save(order)
+                        .onErrorMap(e -> new RuntimeException("Failed to save order", e)));
     }
 
     public Mono<Orders> getOrderById(String orderId) {
