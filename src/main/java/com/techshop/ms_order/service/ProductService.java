@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public class ProductService {
     private final WebClient webClient;
     private final PaymentService paymentService;
-    String baseUrl = "https://localhost:8084";
+    String baseUrl = "http://localhost:8084";
     String baseUrlMock = "https://65fe0693b2a18489b385b835.mockapi.io/products/";
 
     @Autowired

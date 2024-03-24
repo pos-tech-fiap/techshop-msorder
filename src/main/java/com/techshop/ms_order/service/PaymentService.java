@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class PaymentService {
     private final WebClient webClient;
-    String baseUrl = "https://localhost:8083";
+    String baseUrl = "http://localhost:8083";
     String baseUrlMock = "http://demo8072397.mockable.io/";
 
     @Autowired
